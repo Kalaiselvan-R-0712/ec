@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>advanced e‑commerce dashboard · model view</title>
+  <!-- Font Awesome 6 (free) for crisp icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts (Inter) – modern & clean -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: #f3f6fd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1.5rem;
+    }
+
+    /* main dashboard card – subtle glass effect */
+    .dashboard {
+      max-width: 1440px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(156, 163, 175, 0.1);
+      padding: 2rem 2.2rem;
+      transition: all 0.2s ease;
+    }
+
+    /* ----- header & title row ----- */
+    .header-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .title-section h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #0b1e3a, #1d2f50);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.2rem;
+    }
+
+    .title-section .badge {
+      background: #e9ecf5;
+      color: #1f2a4a;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #cdd9ff;
+    }
+
+    .date-tab {
+      background: white;
+      padding: 0.4rem 0.4rem;
+      border-radius: 60px;
+      display: flex;
+      gap: 0.3rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      border: 1px solid #eef2f6;
+    }
+
+    .date-tab span {
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #50607a;
+      cursor: default;
+      transition: 0.1s;
+    }
+
+    .date-tab .active {
+      background: #1d2f50;
+      color: white;
+      box-shadow: 0 6px 12px -8px #0b1e3a;
+    }
+
+    /* ----- kpi cards (responsive grid) ----- */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .kpi-card {
+      background: white;
+      border-radius: 1.8rem;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 8px 24px rgba(0, 20, 50, 0.04);
+      border: 1px solid rgba(230, 240, 255, 0.8);
+      transition: transform 0.15s;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-3px);
+      border-color: #c0d0ff;
+    }
+
+    .kpi-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #55657e;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .kpi-header i {
+      font-size: 1.4rem;
+      color: #2a3d66;
+      opacity: 0.7;
+    }
+
+    .kpi-value {
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #0b1e3a;
+      line-height: 1.2;
+    }
+
+    .kpi-trend {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .trend-up {
+      color: #11998e;
+      background: #e0f7f3;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+    }
+
+    .trend-down {
+      color: #c2485c;
+      background: #fee9ed;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+    }
+
+    .trend-neutral {
+      color: #b45c2b;
+      background: #ffefe3;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+    }
+
+    /* ----- charts & tables section (complex) ----- */
+    .insight-row {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 1.8rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 2rem;
+      padding: 1.5rem 1.3rem 1.8rem 1.3rem;
+      box-shadow: 0 10px 28px -6px rgba(0, 20, 40, 0.06);
+      border: 1px solid #eef4fe;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .card-header h3 {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legend {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .legend span::before {
+      content: "●";
+      margin-right: 5px;
+      font-size: 0.9rem;
+    }
+
+    .legend .sales-legend::before {
+      color: #264e8c;
+    }
+
+    .legend .visit-legend::before {
+      color: #64b6f7;
+    }
+
+    .legend .conv-legend::before {
+      color: #f1b556;
+    }
+
+    /* ----- advanced bar chart simulation (pure css) ----- */
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 180px;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .bar-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 12%;
+    }
+
+    .bars {
+      display: flex;
+      gap: 5px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .bar {
+      width: 12px;
+      background: #264e8c;
+      border-radius: 40px 40px 8px 8px;
+      height: calc(100% - 10px);
+      min-height: 8px;
+      transition: 0.2s;
+    }
+
+    .bar.blue {
+      background: #264e8c;
+    }
+
+    .bar.light {
+      background: #7fa9e0;
+    }
+
+    .bar1 {
+      height: 98px;
+    }
+
+    .bar2 {
+      height: 130px;
+    }
+
+    .bar3 {
+      height: 72px;
+    }
+
+    .bar4 {
+      height: 150px;
+    }
+
+    .bar5 {
+      height: 110px;
+    }
+
+    .bar6 {
+      height: 90px;
+    }
+
+    .bar7 {
+      height: 140px;
+    }
+
+    .bar8 {
+      height: 78px;
+    }
+
+    .bar9 {
+      height: 120px;
+    }
+
+    .month-label {
+      margin-top: 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #55657e;
+      text-transform: uppercase;
+    }
+
+    /* ----- second column: top products & conversion ----- */
+    .product-list {
+      margin: 0.5rem 0 0.2rem;
+    }
+
+    .product-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #ecf1f9;
+    }
+
+    .product-item:last-child {
+      border-bottom: none;
+    }
+
+    .product-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .product-icon {
+      width: 34px;
+      height: 34px;
+      background: #eef4ff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1d2f50;
+    }
+
+    .product-detail .name {
+      font-weight: 650;
+      color: #1b253b;
+    }
+
+    .product-detail .category {
+      font-size: 0.7rem;
+      color: #6f7d98;
+    }
+
+    .product-stats {
+      text-align: right;
+      font-weight: 700;
+      color: #1b2b44;
+    }
+
+    .product-stats span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #11998e;
+    }
+
+    .conversion-ring {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f7faff;
+      padding: 1.2rem 1rem;
+      border-radius: 1.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .ring-text h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #28344a;
+    }
+
+    .ring-text .percent {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1d2f50;
+    }
+
+    .ring-badge {
+      background: #264e8c;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ----- lower row: region & devices (responsive grid) ----- */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr 1fr;
+      gap: 1.8rem;
+      margin-top: 1.8rem;
+    }
+
+    .device-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+    }
+
+    .device-info i {
+      width: 24px;
+      color: #1d2f50;
+    }
+
+    .device-bar-bg {
+      width: 140px;
+      height: 8px;
+      background: #e0e8f2;
+      border-radius: 40px;
+      overflow: hidden;
+    }
+
+    .device-bar-fill {
+      height: 8px;
+      background: #1d2f50;
+      border-radius: 40px;
+    }
+
+    .region-tag {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+    }
+
+    .region-name i {
+      margin-right: 8px;
+      color: #5271a0;
+      width: 18px;
+    }
+
+    .region-value {
+      font-weight: 700;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #eef3fc;
+      margin: 0.5rem 0;
+    }
+
+    /* ===== FULL RESPONSIVENESS ===== */
+    @media screen and (max-width: 1100px) {
+      .dashboard {
+        padding: 1.8rem;
+      }
+
+      .kpi-grid {
+        gap: 1rem;
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .insight-row {
+        grid-template-columns: 1fr;
+      }
+
+      .bottom-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      body {
+        padding: 0.7rem;
+      }
+
+      .dashboard {
+        padding: 1.5rem;
+        border-radius: 2rem;
+      }
+
+      .header-row {
+        flex-direction: column;
+        align-items: start;
+        gap: 1rem;
+      }
+
+      .date-tab {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .date-tab span {
+        flex: 1;
+        text-align: center;
+        padding: 0.5rem 0;
+      }
+
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bottom-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chart-bars {
+        height: auto;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .bar-group {
+        width: 20%;
+        margin-bottom: 1rem;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      .conversion-ring {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+
+      .card-header {
+        flex-direction: column;
+        align-items: start;
+      }
+    }
+
+    /* micro details */
+    .text-muted {
+      color: #6f7d98;
+      font-size: 0.8rem;
+    }
+
+    i {
+      color: #38547b;
+    }
+
+    .fa-regular,
+    .fas,
+    .far {
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dashboard">
+    <a style="display: inline-block; margin-bottom: 10px; padding: 0.7rem 1.8rem; background: #1d2f50; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 0.95rem; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 16px -6px rgba(0,20,40,0.2); transition: all 0.2s ease; cursor: pointer; backdrop-filter: blur(4px); letter-spacing: 0.3px;"
+      href="./home2.html">Back</a>
+
+    <!-- header area -->
+    <div class="header-row">
+      <div class="title-section">
+        <h1><i class="fas fa-chart-pie" style="color: #264e8c; margin-right: 8px;"></i>model dashboard · e‑commerce</h1>
+        <div class="badge"><i class="fas fa-robot"></i> advanced insights · live demo</div>
+      </div>
+      <div class="date-tab">
+        <span class="active">7 days</span>
+        <span>30 days</span>
+        <span>quarter</span>
+        <span><i class="far fa-calendar-alt"></i> custom</span>
+      </div>
+    </div>
+
+    <!-- KPI cards (4) -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-header"><span>total revenue</span> <i class="fas fa-dollar-sign"></i></div>
+        <div class="kpi-value">$284.5k</div>
+        <div class="kpi-trend"><span class="trend-up"><i class="fas fa-arrow-up"></i> +12.3%</span> <span
+            class="text-muted">vs last period</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span>orders</span> <i class="fas fa-bag-shopping"></i></div>
+        <div class="kpi-value">4,256</div>
+        <div class="kpi-trend"><span class="trend-up"><i class="fas fa-arrow-up"></i> +5.4%</span> <span
+            class="text-muted">vs last period</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span>conversion</span> <i class="fas fa-percent"></i></div>
+        <div class="kpi-value">3.86%</div>
+        <div class="kpi-trend"><span class="trend-down"><i class="fas fa-arrow-down"></i> -0.4%</span> <span
+            class="text-muted">vs last period</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span>aov</span> <i class="fas fa-cart-plus"></i></div>
+        <div class="kpi-value">$66.90</div>
+        <div class="kpi-trend"><span class="trend-neutral"><i class="fas fa-minus"></i> +0.1%</span> <span
+            class="text-muted">stable</span></div>
+      </div>
+    </div>
+
+    <!-- first insight row: advanced chart + top products -->
+    <div class="insight-row">
+      <!-- left: bar chart with double metric (sales & visitors) -->
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-chart-line" style="color: #264e8c;"></i> revenue & visitors</h3>
+          <div class="legend">
+            <span class="sales-legend">sales (k$)</span>
+            <span class="visit-legend">visitors (k)</span>
+          </div>
+        </div>
+        <!-- bar chart simulation (advanced look with grouped bars) -->
+        <div class="chart-bars">
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar blue bar1"></div>
+              <div class="bar light bar2"></div>
+            </div>
+            <div class="month-label">mon</div>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar blue bar3"></div>
+              <div class="bar light bar4"></div>
+            </div>
+            <div class="month-label">tue</div>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar blue bar5"></div>
+              <div class="bar light bar6"></div>
+            </div>
+            <div class="month-label">wed</div>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar blue bar7"></div>
+              <div class="bar light bar2"></div>
+            </div>
+            <div class="month-label">thu</div>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar blue bar8"></div>
+              <div class="bar light bar9"></div>
+            </div>
+            <div class="month-label">fri</div>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar blue bar4"></div>
+              <div class="bar light bar7"></div>
+            </div>
+            <div class="month-label">sat</div>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar blue bar2"></div>
+              <div class="bar light bar5"></div>
+            </div>
+            <div class="month-label">sun</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #50607a; padding: 0 5px;">
+          <span>← lower / higher →</span>
+          <span><i class="fas fa-chevron-up" style="color: #11998e;"></i> +18% wk/wk</span>
+        </div>
+      </div>
+
+      <!-- right: top products + conversion ring (model style) -->
+      <div class="card" style="padding-bottom: 1.2rem;">
+        <div class="card-header">
+          <h3><i class="fas fa-crown" style="color: #f1b556;"></i> top products</h3>
+          <span class="text-muted">by revenue</span>
+        </div>
+        <div class="product-list">
+          <div class="product-item">
+            <div class="product-info">
+              <div class="product-icon"><i class="fas fa-headphones"></i></div>
+              <div class="product-detail"><span class="name">SoloPro X</span>
+                <div class="category">audio</div>
+              </div>
+            </div>
+            <div class="product-stats">$42.5k <span>+8%</span></div>
+          </div>
+          <div class="product-item">
+            <div class="product-info">
+              <div class="product-icon"><i class="fas fa-clock"></i></div>
+              <div class="product-detail"><span class="name">Chrono sport</span>
+                <div class="category">wearables</div>
+              </div>
+            </div>
+            <div class="product-stats">$38.2k <span>+13%</span></div>
+          </div>
+          <div class="product-item">
+            <div class="product-info">
+              <div class="product-icon"><i class="fas fa-laptop"></i></div>
+              <div class="product-detail"><span class="name">UltraBook 14</span>
+                <div class="category">computing</div>
+              </div>
+            </div>
+            <div class="product-stats">$31.7k <span>-2%</span></div>
+          </div>
+          <div class="product-item">
+            <div class="product-info">
+              <div class="product-icon"><i class="fas fa-camera"></i></div>
+              <div class="product-detail"><span class="name">DigiLens</span>
+                <div class="category">camera</div>
+              </div>
+            </div>
+            <div class="product-stats">$27.3k <span>+6%</span></div>
+          </div>
+        </div>
+        <!-- conversion rate ring visual (advanced element) -->
+        <div class="conversion-ring">
+          <div class="ring-text">
+            <h4>checkout conversion</h4>
+            <div class="percent">23.4%</div>
+          </div>
+          <div class="ring-badge"><i class="fas fa-rocket"></i> +2.1pp</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- bottom row: region / devices / entry model (fully responsive) -->
+    <div class="bottom-grid">
+      <!-- sales by region card -->
+      <div class="card" style="padding: 1.5rem 1.2rem;">
+        <div class="card-header" style="margin-bottom: 0.5rem;">
+          <h3><i class="fas fa-globe"></i> region</h3> <span class="text-muted">share</span>
+        </div>
+        <div class="region-tag"><span class="region-name"><i class="fas fa-map-pin"></i> north america</span><span
+            class="region-value">42%</span></div>
+        <div class="device-bar-bg" style="width:100%; margin:0 0 0.8rem;">
+          <div class="device-bar-fill" style="width:42%"></div>
+        </div>
+        <div class="region-tag"><span class="region-name"><i class="fas fa-map-pin"></i> europe</span><span
+            class="region-value">31%</span></div>
+        <div class="device-bar-bg" style="width:100%; margin:0 0 0.8rem;">
+          <div class="device-bar-fill" style="width:31%"></div>
+        </div>
+        <div class="region-tag"><span class="region-name"><i class="fas fa-map-pin"></i> asia‑pacific</span><span
+            class="region-value">19%</span></div>
+        <div class="device-bar-bg" style="width:100%; margin:0 0 0.8rem;">
+          <div class="device-bar-fill" style="width:19%"></div>
+        </div>
+        <div class="region-tag"><span class="region-name"><i class="fas fa-map-pin"></i> other</span><span
+            class="region-value">8%</span></div>
+        <div class="device-bar-bg" style="width:100%;">
+          <div class="device-bar-fill" style="width:8%"></div>
+        </div>
+      </div>
+      <!-- device breakdown card -->
+      <div class="card" style="padding: 1.5rem 1.2rem;">
+        <div class="card-header">
+          <h3><i class="fas fa-mobile-alt"></i> devices</h3> <span class="text-muted">sessions</span>
+        </div>
+        <div class="device-item"><span class="device-info"><i class="fas fa-mobile"></i> mobile</span> <span
+            style="font-weight: 600;">58%</span></div>
+        <div class="device-bar-bg" style="width:100%;">
+          <div class="device-bar-fill" style="width:58%"></div>
+        </div>
+        <div class="device-item"><span class="device-info"><i class="fas fa-tablet"></i> tablet</span> <span
+            style="font-weight: 600;">14%</span></div>
+        <div class="device-bar-bg" style="width:100%;">
+          <div class="device-bar-fill" style="width:14%"></div>
+        </div>
+        <div class="device-item"><span class="device-info"><i class="fas fa-desktop"></i> desktop</span> <span
+            style="font-weight: 600;">28%</span></div>
+        <div class="device-bar-bg" style="width:100%;">
+          <div class="device-bar-fill" style="width:28%"></div>
+        </div>
+      </div>
+      <!-- model prediction / return rate card (advanced flavour) -->
+      <div class="card" style="background: linear-gradient(145deg, #ffffff, #f8fbff);">
+        <div class="card-header">
+          <h3><i class="fas fa-brain"></i> ml forecast</h3> <span class="badge" style="background:#d7e2fd;">next
+            7d</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin: 1rem 0 0.5rem;">
+          <span class="text-muted">predicted revenue</span>
+          <span style="font-weight: 800; color:#0b1e3a;">$312.4k</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+          <span class="text-muted">confidence interval</span>
+          <span style="font-weight: 600;">±4.2%</span>
+        </div>
+        <hr>
+        <div style="display: flex; gap: 1rem; margin-top: 0.8rem;">
+          <div><span class="text-muted">trending</span>
+            <div><i class="fas fa-arrow-up" style="color:#11998e;"></i> 2.4%</div>
+          </div>
+          <div><span class="text-muted">seasonality</span>
+            <div><i class="fas fa-minus" style="color:#b45c2b;"></i> 0.1%</div>
+          </div>
+        </div>
+        <div
+          style="margin-top: 1.2rem; background: #eef4fe; border-radius: 50px; padding:0.5rem 1rem; font-size:0.8rem; font-weight:500;">
+          <i class="fas fa-microchip"></i> model v2.1 · next update in 2h
+        </div>
+      </div>
+    </div>
+
+    <!-- tiny footer note (responsive) -->
+    <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem; font-size:0.75rem; color:#a5b7d0;">
+      <span><i class="far fa-clock"></i> advanced dashboard — fully responsive, live preview</span>
+    </div>
+  </div>
+</body>
+
+</html>
