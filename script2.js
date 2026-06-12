@@ -31,23 +31,28 @@ dropDowns.forEach(dropDown => {
 
 
 
- const menuToggle = document.querySelector(".menu-toggle");
-    const menuIcon = document.querySelector(".menu-icon");
-    const closeIcon = document.querySelector(".close-icon");
-    const sidebar = document.querySelector("aside");
+const menuToggle = document.querySelector(".menu-toggle");
+const menuIcon = document.querySelector(".menu-icon");
+const closeIcon = document.querySelector(".close-icon");
+const sidebar = document.querySelector("aside");
 
-    menuToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("active");
+if(menuToggle && sidebar){
 
-        if (sidebar.classList.contains("active")) {
-            menuIcon.style.display = "none";
-            closeIcon.style.display = "block";
-        } else {
-            menuIcon.style.display = "block";
-            closeIcon.style.display = "none";
-        }
-    });
+menuToggle.addEventListener("click", () => {
 
+    sidebar.classList.toggle("active");
+
+    if (sidebar.classList.contains("active")) {
+        menuIcon.style.display = "none";
+        closeIcon.style.display = "block";
+    } else {
+        menuIcon.style.display = "block";
+        closeIcon.style.display = "none";
+    }
+
+});
+
+}
 
 
 

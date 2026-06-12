@@ -556,3 +556,206 @@ gap:20px;
     text-align: center;
   }
 }
+
+
+
+/* =====================================
+   MASTER RESPONSIVE SYSTEM
+===================================== */
+
+/* Large Desktop */
+@media (max-width: 1400px){
+    .container{
+        width:95%;
+    }
+}
+
+/* Laptop */
+@media (max-width: 1200px){
+
+    .container{
+        width:95%;
+    }
+
+    h1{
+        font-size:3rem;
+    }
+
+    h2{
+        font-size:2.2rem;
+    }
+
+    section{
+        padding:70px 5%;
+    }
+}
+
+/* Tablet Landscape */
+@media (max-width: 1024px){
+
+    .row,
+    .hero,
+    .about-content,
+    .service-content,
+    .contact-content,
+    .footer-content{
+        gap:30px;
+    }
+
+    .grid-4{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid-3{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+/* Tablet */
+@media (max-width: 992px){
+
+    .menu{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:280px;
+        height:100vh;
+        flex-direction:column;
+        background:#fff;
+        transition:.4s;
+        padding-top:100px;
+        z-index:999;
+    }
+
+    .menu.active{
+        right:0;
+    }
+
+    .hamburger{
+        display:block;
+    }
+
+    .hero,
+    .about-content,
+    .contact-content,
+    .service-content,
+    .footer-content{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero-image,
+    .hero-text,
+    .about-image,
+    .about-text{
+        width:100%;
+    }
+
+    .grid-4,
+    .grid-3,
+    .grid-2{
+        grid-template-columns:1fr;
+    }
+
+    img{
+        max-width:100%;
+        height:auto;
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 768px){
+
+    html{
+        font-size:15px;
+    }
+
+    section{
+        padding:60px 20px;
+    }
+
+    h1{
+        font-size:2.5rem;
+    }
+
+    h2{
+        font-size:2rem;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .card{
+        padding:20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px){
+
+    html{
+        font-size:14px;
+    }
+
+    h1{
+        font-size:2rem;
+    }
+
+    h2{
+        font-size:1.6rem;
+    }
+
+    h3{
+        font-size:1.2rem;
+    }
+
+    section{
+        padding:50px 15px;
+    }
+
+    .card{
+        padding:15px;
+    }
+
+    .footer{
+        text-align:center;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px){
+
+    h1{
+        font-size:1.8rem;
+    }
+
+    h2{
+        font-size:1.4rem;
+    }
+
+    .container{
+        width:100%;
+    }
+
+    .hero{
+        min-height:auto;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 360px){
+
+    html{
+        font-size:13px;
+    }
+
+    .btn{
+        padding:12px 18px;
+    }
+}
