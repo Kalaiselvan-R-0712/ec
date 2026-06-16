@@ -1,13 +1,5 @@
 
 
-
-
-
-
-
-// ==================home1 &home 2==============================
-
-
 const dropDowns = document.querySelectorAll(".home-down");
 
 dropDowns.forEach(dropDown => {
@@ -195,7 +187,6 @@ const mcObserver = new IntersectionObserver(entries => {
   }
 });
 
-mcObserver.observe(document.querySelector(".mc-stats-section"));
 
 
 

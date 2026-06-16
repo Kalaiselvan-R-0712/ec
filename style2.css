@@ -771,4 +771,34 @@
     max-width:260px;
 }
 
+.watch-slide{
+    padding-top: 100px;
+}
+
+
+}
+
+@media (max-width:768px){
+
+    .watch-slider{
+        min-height:850px; /* increase hero height */
+        height:auto;
+    }
+
+    .watch-slide{
+        min-height:850px;
+        padding:120px 20px 60px; /* extra bottom space */
+        justify-content:flex-start;
+        gap:30px;
+    }
+
+    .watch-right{
+        padding-bottom:50px;
+    }
+
+    .watch-right img{
+        width:80%;
+        max-width:280px;
+        margin-bottom:30px;
+    }
 }

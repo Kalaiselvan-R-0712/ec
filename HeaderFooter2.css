@@ -76,6 +76,8 @@ li>a {
     font-size: 16px;
     font-weight: 500;
 }
+
+
 .home-menu{
     position: relative;
 }
@@ -148,9 +150,7 @@ margin-top: 12px;
 
 }
 @media  (max-width: 880px){
-    .headerbutton1{
-        display: none;
-    }
+
     #mobile-login{
         display: block;
     }
@@ -693,10 +693,6 @@ aside.active {
         height:35px;
     }
 
-    .headerbutton1{
-        display:none;
-    }
-
     aside{
         top:90px;
     }
@@ -753,4 +749,74 @@ body{
         overflow:hidden;
     }
 
+}
+
+/* Global UI improvements */
+.heading{
+    position:fixed !important;
+    top:0;
+    left:0;
+    width:100%;
+    box-shadow:0 2px 12px rgba(0,0,0,.2);
+}
+body{
+    padding-top:90px;
+}
+nav ul li a,
+.headerbutton a,
+.headerbutton button,
+.headerbutton1 .login,
+button,
+input[type='submit'],
+input[type='button']{
+    transition:all .3s ease;
+    border-radius:10px;
+}
+nav ul li a{
+    padding:10px 14px;
+    display:inline-block;
+}
+nav ul li a:hover,
+.headerbutton a:hover,
+.headerbutton button:hover,
+.headerbutton1 .login:hover,
+button:hover,
+input[type='submit']:hover,
+input[type='button']:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08);
+    box-shadow:0 8px 18px rgba(0,0,0,.18);
+}
+
+
+/* Desktop */
+.heading .headerbutton1{
+    display:block;
+}
+
+/* Mobile */
+@media (max-width:880px){
+
+    /* Hide header login */
+    .heading > .headerbutton1{
+        display:none;
+    }
+
+    /* Show login inside sidebar */
+    aside .headerbutton1{
+        display:block;
+        margin-top:20px;
+    }
+
+    #login1{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        width:100%;
+    }
+
+    #login1 a{
+        text-decoration:none;
+        color:#fff;
+    }
 }
