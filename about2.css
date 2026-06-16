@@ -703,3 +703,15 @@
         padding:12px 18px;
     }
 }
+
+.feature-item i{
+    font-size:70px;
+    color:#fa8737;
+    margin-bottom:20px;
+    display:block;
+    transition:.3s ease;
+}
+
+.feature-item:hover i{
+    transform:translateY(-8px) scale(1.08);
+}
