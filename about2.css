@@ -181,14 +181,27 @@
     font-size: 13px;
   }
 
-  .about-buttons .btn-outline,
-  .about-buttons .btn-link {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-  }
 }
 
+
+
+@media (max-width: 600px){
+
+  .ecommerce-buttons,
+  .about-buttons{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:15px;
+  }
+
+  .btn-outline,
+  .btn-link{
+      width:220px;
+      text-align:center;
+      margin:0;
+  }
+}
 
 
 

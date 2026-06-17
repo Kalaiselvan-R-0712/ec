@@ -576,10 +576,6 @@ aside.active {
         font-size:2rem;
     }
 
-    .btn{
-        width:100%;
-    }
-
     .card{
         padding:20px;
     }
@@ -1265,4 +1261,21 @@ button:hover,
 .btn-link::after,
 .affiliate-btn::after{
     display:none !important;
+}
+
+@media (max-width: 768px){
+
+    .btn,
+    .btn-outline,
+    .btn-link{
+        width:auto !important;
+        min-width:180px;
+    }
+
+    .about-buttons{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:15px;
+    }
 }

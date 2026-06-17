@@ -192,12 +192,26 @@ const mcStartCounting = () => {
   });
 };
 
-const mcObserver = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting) {
-    mcStartCounting();
-    mcObserver.disconnect();
+if (mcCounters.length > 0) {
+
+  const mcObserver = new IntersectionObserver(entries => {
+
+    if (entries[0].isIntersecting) {
+
+      mcStartCounting();
+      mcObserver.disconnect();
+
+    }
+
+  });
+
+  const mcSection = document.querySelector(".mc-stats-section");
+
+  if (mcSection) {
+    mcObserver.observe(mcSection);
   }
-});
+
+}
 
 
 
@@ -330,15 +344,21 @@ const startCounter = () => {
 
 const counterSection = document.querySelector(".mc-stats-section");
 
-const observer = new IntersectionObserver((entries) => {
+if (counterSection) {
 
-    if (entries[0].isIntersecting) {
+    const observer = new IntersectionObserver((entries) => {
 
-        startCounter();
-        observer.disconnect();
+        if (entries[0].isIntersecting) {
 
-    }
+            startCounter();
+            observer.disconnect();
 
-}, {
-    threshold: 0.3
-});
+        }
+
+    }, {
+        threshold: 0.3
+    });
+
+    observer.observe(counterSection);
+
+}
