@@ -7,6 +7,7 @@
 .heading {
     min-height: 90px;
     /* width: 100vw; */
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -819,40 +820,4 @@ input[type='button']:hover{
         text-decoration:none;
         color:#fff;
     }
-}
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 20px;
-}
-
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    min-width: 120px;
-}
- 
-.login-btn {
-    box-sizing: border-box;
-    white-space: nowrap;
 }
