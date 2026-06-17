@@ -826,3 +826,15 @@ body {
     width: 100% !important;
     overflow-x: hidden !important;
 }
+
+
+
+.headerbutton1{
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.heading{
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
