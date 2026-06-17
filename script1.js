@@ -342,5 +342,3 @@ const observer = new IntersectionObserver((entries) => {
 }, {
     threshold: 0.3
 });
-
-observer.observe(counterSection);
