@@ -50,8 +50,20 @@ menuToggle.addEventListener("click", () => {
 
 });
 
-}
+window.addEventListener("resize", () => {
 
+    if (window.innerWidth > 992) {
+
+        sidebar.classList.remove("active");
+
+        menuIcon.style.display = "block";
+        closeIcon.style.display = "none";
+
+    }
+
+});
+
+}
 
 
   const faqItems = document.querySelectorAll(".faq-item");
@@ -280,7 +292,3 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 
 });
-
-
-
-

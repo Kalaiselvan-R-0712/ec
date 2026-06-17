@@ -52,6 +52,19 @@ menuToggle.addEventListener("click", () => {
 
 });
 
+window.addEventListener("resize", () => {
+
+    if (window.innerWidth > 992) {
+
+        sidebar.classList.remove("active");
+
+        menuIcon.style.display = "block";
+        closeIcon.style.display = "none";
+
+    }
+
+});
+
 }
 
 
@@ -63,29 +76,6 @@ menuToggle.addEventListener("click", () => {
 
 
 
-
-    var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 4,
-  spaceBetween: 40,
-  loop: true,
-  speed: 4000, // slow movement
-  autoplay: {
-    delay: 0,
-    disableOnInteraction: false,
-  },
-  freeMode: true,
-  freeModeMomentum: false,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  breakpoints: {
-    0: { slidesPerView: 1 },
-    576: { slidesPerView: 2 },
-    768: { slidesPerView: 3 },
-    992: { slidesPerView: 4 },
-  },
-});
 
 
 

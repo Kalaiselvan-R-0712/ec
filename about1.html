@@ -419,90 +419,18 @@
 </footer>
 
 
-    <!-- <script src="script.js"></script> -->
-    <script>const mcCounters = document.querySelectorAll(".mc-counter");
-        const mcSpeed = 200;
 
-        const mcStartCounting = () => {
-            mcCounters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute("data-target");
-                    const count = +counter.innerText;
-                    const increment = target / mcSpeed;
-
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + increment);
-                        setTimeout(updateCount, 10);
-                    } else {
-                        counter.innerText = target.toLocaleString();
-                    }
-                };
-                updateCount();
-            });
-        };
-
-        const mcObserver = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) {
-                mcStartCounting();
-                mcObserver.disconnect();
-            }
-        });
-
-        mcObserver.observe(document.querySelector(".mc-stats-section"));
-
-
-
-
-    </script>
-
-<script>
-     AOS.init({
-        duration:400,
-        easing:'ease-in-out',
-        once:true,
-    });
-     const menuToggle = document.querySelector(".menu-toggle");
-    const menuIcon = document.querySelector(".menu-icon");
-    const closeIcon = document.querySelector(".close-icon");
-    const sidebar = document.querySelector("aside");
-
-    menuToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("active");
-
-        if (sidebar.classList.contains("active")) {
-            menuIcon.style.display = "none";
-            closeIcon.style.display = "block";
-        } else {
-            menuIcon.style.display = "block";
-            closeIcon.style.display = "none";
-        }
-    });
-
-
- </script>
 <script src="./script1.js"></script>
 
 
 <script>
-const dropDowns = document.querySelectorAll(".home-down");
-
-dropDowns.forEach(dropDown => {
-
-    dropDown.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        const parentLi = this.closest(".home-menu");
-        const option = parentLi.querySelector("ul");
-
-        if (option.style.display === "flex") {
-            option.style.display = "none";
-        } else {
-            option.style.display = "flex";
-        }
-    });
-
+AOS.init({
+    duration:400,
+    easing:'ease-in-out',
+    once:true,
 });
 </script>
+
 
 </body>
 

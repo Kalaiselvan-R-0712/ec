@@ -5,16 +5,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="about2.css">
+        <link rel="stylesheet" href="./about2.css">
         <link rel="stylesheet" href="./HeaderFooter2.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
 
     <body>
-      
+          
 <div class="heading">
         <div class="image">
             <a href="home2.html" class="image">
@@ -65,16 +63,11 @@
         </div>
 
 
-
-
-
-
-
     <aside>
             <nav>
                 <ul>
                     <li class="home-menu" oncl>
-                        <a href="./home2.html" class="home-down">
+                        <a href="service2.html" class="home-down">
                             <p>HOME</p>
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 384 512"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
@@ -170,32 +163,6 @@
     </div>
     
   </div>
-
-
-
-  <script>
-
-const accordionItems = document.querySelectorAll(".accordion-item");
-
-accordionItems.forEach(item => {
-  const header = item.querySelector(".accordion-header");
-
-  header.addEventListener("click", () => {
-
-    // Close other items
-    accordionItems.forEach(i => {
-      if (i !== item) {
-        i.classList.remove("active");
-      }
-    });
-
-    // Toggle current
-    item.classList.toggle("active");
-  });
-});
-
-</script>
-
 
 
 
@@ -343,115 +310,6 @@ accordionItems.forEach(item => {
 </section> 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <footer class="footer">
 
     <div data-aos="fade-up" class="footer-container">
@@ -564,49 +422,7 @@ accordionItems.forEach(item => {
         once:true,
     });
  
-     const menuToggle = document.querySelector(".menu-toggle");
-    const menuIcon = document.querySelector(".menu-icon");
-    const closeIcon = document.querySelector(".close-icon");
-    const sidebar = document.querySelector("aside");
-
-    menuToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("active");
-
-        if (sidebar.classList.contains("active")) {
-            menuIcon.style.display = "none";
-            closeIcon.style.display = "block";
-        } else {
-            menuIcon.style.display = "block";
-            closeIcon.style.display = "none";
-        }
-    });
-
-
-
-    const dropDowns = document.querySelectorAll(".home-down");
-
-dropDowns.forEach(dropDown => {
-
-    dropDown.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        // get the parent li
-        const parentLi = this.closest(".home-menu");
-
-        // get the ul inside that li
-        const option = parentLi.querySelector("ul");
-
-        // toggle
-        if (option.style.display === "flex") {
-            option.style.display = "none";
-        } else {
-            option.style.display = "flex";
-        }
-    });
-
-});
  </script>
-
 
 
 
@@ -614,5 +430,8 @@ dropDowns.forEach(dropDown => {
 
             <script src="./script2.js"></script>
     </body>
+
     </html>
+
+
 
