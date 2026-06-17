@@ -375,8 +375,8 @@ body{
 }
 
 .mc-stat-card:hover .mc-stat-icon svg {
-  stroke: #fff;
-  transform:Zoom(360deg) scale(1.2);
+    fill:#fff;
+    transform:rotate(360deg) scale(1.2);
 }
 
 .mc-counter {
@@ -680,4 +680,10 @@ body{
     .btn{
         padding:12px 18px;
     }
+}
+
+
+html,body {
+    width: 100% !important;
+    overflow-x: hidden !important;
 }

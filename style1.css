@@ -1774,3 +1774,8 @@ RESPONSIVE
         height:120vh !important;
     }
 }
+
+html,body {
+    width: 100% !important;
+    overflow-x: hidden !important;
+}

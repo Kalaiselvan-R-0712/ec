@@ -292,3 +292,55 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 
 });
+
+
+// ================= COUNTER =================
+
+const counters = document.querySelectorAll(".mc-counter");
+
+const startCounter = () => {
+    counters.forEach(counter => {
+
+        const target = +counter.getAttribute("data-target");
+        let count = 0;
+
+        const speed = target / 100;
+
+        const updateCount = () => {
+
+            if (count < target) {
+
+                count += speed;
+
+                counter.innerText = Math.floor(count).toLocaleString();
+
+                requestAnimationFrame(updateCount);
+
+            } else {
+
+                counter.innerText = target.toLocaleString();
+
+            }
+        };
+
+        updateCount();
+
+    });
+};
+
+const counterSection = document.querySelector(".mc-stats-section");
+
+const observer = new IntersectionObserver((entries) => {
+
+    if (entries[0].isIntersecting) {
+
+        startCounter();
+        observer.disconnect();
+
+    }
+
+}, {
+    threshold: 0.3
+});
+
+observer.observe(counterSection);

@@ -715,3 +715,10 @@
 .feature-item:hover i{
     transform:translateY(-8px) scale(1.08);
 }
+
+
+
+html,body {
+    width: 100% !important;
+    overflow-x: hidden !important;
+}

@@ -775,3 +775,10 @@ input[type='button']:hover{
     filter:brightness(1.08);
     box-shadow:0 8px 18px rgba(0,0,0,.18);
 }
+
+
+
+html,body {
+    width: 100% !important;
+    overflow-x: hidden !important;
+}

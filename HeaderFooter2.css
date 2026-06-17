@@ -3,14 +3,13 @@
     margin: 0;
     box-sizing: border-box;
 }
-
-.heading {
+   
+    .heading {
     min-height: 90px;
     /* width: 100vw; */
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: black;
       position:sticky;
     z-index: 100;
@@ -729,9 +728,6 @@ body{
     width:100%;
 }
 
-*{
-    max-width:100%;
-}
 
 
 
@@ -820,4 +816,453 @@ input[type='button']:hover{
         text-decoration:none;
         color:#fff;
     }
+}
+
+html,
+body{
+    overflow-x:hidden;
+    width:100%;
+}
+
+
+
+
+/* ===== DESKTOP HEADER FIX ===== */
+
+@media (min-width: 881px){
+
+    .heading{
+        display:flex !important;
+        align-items:center;
+        position:fixed !important;
+        top:0;
+        left:0;
+        right:0;
+        height:90px;
+        padding:0 20px;
+    }
+
+    .image{
+        flex:0 0 220px;
+    }
+
+    .heading > nav{
+        flex:1;
+        display:flex;
+        justify-content:center;
+    }
+
+    .heading > .headerbutton1{
+        flex:0 0 auto;
+        margin-left:auto;
+        position:relative;
+        right:0;
+    }
+
+    .menu-toggle{
+        display:none !important;
+    }
+}
+
+
+nav > ul{
+    width:max-content;
+}
+
+.headerbutton1{
+    min-width:140px;
+    text-align:right;
+}
+
+.image img{
+    width:280px;
+    height:auto;
+}
+
+nav ul li a{
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    font-weight:500;
+    text-transform:none;
+}
+
+
+.headerbutton1 .login{
+    padding:12px 28px;
+    border:2px solid #f5863e;
+    border-radius:12px;
+    background:transparent;
+    color:#fff;
+    transition:.3s;
+}
+
+.headerbutton1 .login:hover{
+    background:#f5863e;
+    color:#fff !important;
+    border-color:#f5863e;
+    transform:translateY(-2px);
+}
+
+
+html,body {
+    width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+
+@media (min-width:881px){
+
+    .heading{
+        display:flex;
+        align-items:center;
+        gap:50px;
+
+        height:80px;
+        padding:0 40px;
+        background:#000;
+    }
+
+    .image img{
+        width:220px;
+        height:auto;
+    }
+
+    .heading > nav{
+        flex:none;
+    }
+
+    .heading > nav > ul{
+        display:flex;
+        align-items:center;
+        gap:40px;
+    }
+
+    .headerbutton1{
+        margin-left:auto;
+    }
+}
+
+
+nav ul li a{
+    font-family:'Poppins',sans-serif;
+    font-size:16px;
+    font-weight:500;
+}
+
+
+.headerbutton1 .login{
+    padding:12px 24px;
+    border:1px solid #f5863e;
+    border-radius:12px;
+}
+
+
+
+@media (max-width:880px){
+
+    .image img{
+        width:150px !important;
+        height:auto;
+    }
+
+}
+
+
+@media (max-width:480px){
+
+    .image img{
+        width:130px !important;
+        height:auto;
+    }
+
+}
+
+
+.headerbutton1 .login{
+    padding:12px 24px;
+    border:1.5px solid #f5863e;
+    border-radius:10px;
+    font-weight:600;
+}
+
+
+
+/* ================= GLOBAL BUTTON SYSTEM ================= */
+
+a.login,
+.btn-outline,
+.btn-link,
+.affiliate-btn,
+.send-msd,
+button,
+input[type="submit"],
+input[type="button"]{
+
+    transition:all .35s ease;
+}
+
+/* Filled Buttons */
+
+button,
+.send-msd,
+.btn-outline{
+
+    border-radius:12px;
+    font-weight:600;
+}
+
+button:hover,
+.send-msd:hover,
+.btn-outline:hover{
+
+    transform:translateY(-3px);
+    box-shadow:0 12px 24px rgba(245,134,62,.25);
+}
+
+/* Login Button */
+
+.headerbutton1 .login{
+
+    border-radius:12px;
+    transition:all .35s ease;
+}
+
+.headerbutton1 .login:hover{
+
+    background:#f5863e;
+    color:#fff !important;
+    border-color:#f5863e;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 24px rgba(245,134,62,.30);
+}
+
+/* Text CTA */
+
+.btn-link,
+.affiliate-btn{
+
+    position:relative;
+}
+
+.btn-link::after{
+
+    content:'';
+
+    position:absolute;
+    left:0;
+    bottom:-4px;
+
+    width:0;
+    height:2px;
+
+    background:#ff914d;
+
+    transition:.3s ease;
+}
+
+.btn-link:hover::after{
+
+    width:100%;
+}
+
+.btn-link:hover,
+.affiliate-btn:hover{
+
+    color:#ff914d;
+}
+
+
+
+/* ===== ABOUT PAGE CTA ENHANCEMENT ===== */
+
+.btn-outline,
+.btn-link,
+.affiliate-btn{
+    transition:all .35s ease;
+}
+
+.btn-outline{
+    border-radius:12px;
+    font-weight:600;
+}
+
+.btn-outline:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 24px rgba(245,134,62,.25);
+}
+
+.btn-link{
+    display:inline-block;
+    padding:12px 24px;
+    border:2px solid #ff914d;
+    border-radius:12px;
+    text-decoration:none;
+    transition:.35s ease;
+}
+
+.btn-link:hover{
+    background:#ff914d;
+    color:#fff;
+    transform:translateY(-4px);
+}
+
+.affiliate-btn{
+    display:inline-block;
+    padding:14px 28px;
+    background:#ff914d;
+    color:#fff;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.affiliate-btn:hover{
+    background:#ff7a21;
+    transform:translateY(-4px);
+    box-shadow:0 12px 24px rgba(245,134,62,.30);
+}
+
+
+
+
+
+.affiliate-btn{
+    display:inline-block;
+    padding:14px 28px;
+    background:#ff914d;
+    color:#fff !important;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.35s ease;
+}
+
+.affiliate-btn::after{
+    display:none !important;
+    content:none !important;
+}
+
+.affiliate-btn:hover{
+    background:#ff7a21;
+    color:#fff !important;
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(255,145,77,.35);
+}
+
+
+/* =========================
+   GLOBAL MODERN BUTTONS
+========================= */
+
+.btn,
+.btn-outline,
+.btn-link,
+.affiliate-btn,
+.submit-btn,
+.service-btn,
+.login,
+.hero-btns a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 30px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .35s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+/* Orange Buttons */
+.btn-outline,
+.submit-btn,
+.affiliate-btn,
+.login{
+    background:#ff914d;
+    color:#fff !important;
+    border:2px solid #ff914d;
+}
+
+/* White Buttons */
+.btn-link,
+.service-btn,
+.btn.outline{
+    background:#fff;
+    color:#111 !important;
+    border:2px solid #ff914d;
+}
+
+/* Universal Hover */
+.btn:hover,
+.btn-outline:hover,
+.btn-link:hover,
+.affiliate-btn:hover,
+.submit-btn:hover,
+.service-btn:hover,
+.login:hover,
+.hero-btns a:hover{
+
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(255,145,77,.35);
+}
+
+/* Orange Hover */
+.btn-outline:hover,
+.submit-btn:hover,
+.affiliate-btn:hover,
+.login:hover{
+    background:#ff7a21;
+    border-color:#ff7a21;
+}
+
+/* White Hover */
+.btn-link:hover,
+.service-btn:hover,
+.btn.outline:hover{
+    background:#ff914d;
+    color:#fff !important;
+}
+
+/* Shine Effect */
+.btn::before,
+.btn-outline::before,
+.btn-link::before,
+.affiliate-btn::before,
+.submit-btn::before,
+.service-btn::before,
+.login::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+    transition:.6s;
+}
+
+.btn:hover::before,
+.btn-outline:hover::before,
+.btn-link:hover::before,
+.affiliate-btn:hover::before,
+.submit-btn:hover::before,
+.service-btn:hover::before,
+.login:hover::before{
+    left:100%;
+}
+
+/* Remove old underline effects */
+.btn-link::after,
+.affiliate-btn::after{
+    display:none !important;
 }

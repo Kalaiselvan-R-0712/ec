@@ -598,3 +598,8 @@ section {
         padding:12px 18px;
     }
 }
+
+html,body {
+    width: 100% !important;
+    overflow-x: hidden !important;
+}
