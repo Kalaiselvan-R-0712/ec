@@ -362,3 +362,4 @@ if (counterSection) {
     observer.observe(counterSection);
 
 }
+
